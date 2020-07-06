@@ -97,11 +97,11 @@ public class MapFragment extends Fragment {
             name = "Torreon";
             if (getArguments() != null) {
                 this.lat = getArguments().getDouble("lat");
-//            Log.d("TAG2", String.valueOf(lat));
+           Log.d("TAG2", String.valueOf(lat));
                 this.lon = getArguments().getDouble("lon");
-//            Log.d("TAG2", String.valueOf(lon));
+            Log.d("TAG2", String.valueOf(lon));
                 this.name = getArguments().getString("name");
-//            Log.d("TAG2", String.valueOf(name));
+            Log.d("TAG2", String.valueOf(name));
             }
             mapFragment.getMapAsync(callback);
         }

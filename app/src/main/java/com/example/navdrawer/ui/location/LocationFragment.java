@@ -96,8 +96,9 @@ public class LocationFragment extends Fragment {
                         public void onClick(View view) {
                             Bundle bundle = new Bundle();
                             bundle.putString("name", ubications.get(recyclerView.getChildAdapterPosition(view)).getName());
+                            Log.d("TAG NAME", String.valueOf(ubications.get(recyclerView.getChildAdapterPosition(view)).getName()));
                             bundle.putFloat("lat", ubications.get(recyclerView.getChildAdapterPosition(view)).getLat());
-//                            Log.d("TAG", String.valueOf(ubications.get(recyclerView.getChildAdapterPosition(view)).getLon()));
+                            Log.d("TAG2", String.valueOf(ubications.get(recyclerView.getChildAdapterPosition(view)).getLon()));
                             bundle.putFloat("lon", ubications.get(recyclerView.getChildAdapterPosition(view)).getLon());
 
                             navController.navigate(R.id.nav_map, bundle);
