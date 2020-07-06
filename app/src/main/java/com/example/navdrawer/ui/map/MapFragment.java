@@ -30,13 +30,35 @@ public class MapFragment extends Fragment {
     String name;
 
 
+
 //    private MapViewModel mapViewModel;
+
+    private OnMapReadyCallback callback = new OnMapReadyCallback() {
+
+        /**
+         * Manipulates the map once available.
+         * This callback is triggered when the map is ready to be used.
+         * This is where we can add markers or lines, add listeners or move the camera.
+         * In this case, we just add a marker near Sydney, Australia.
+         * If Google Play services is not installed on the device, the user will be prompted to
+         * install it inside the SupportMapFragment. This method will only be triggered once the
+         * user has installed Google Play services and returned to the app.
+         */
+        @Override
+        public void onMapReady(GoogleMap googleMap) {
+            LatLng sydney = new LatLng(lat, lon);
+            googleMap.addMarker(new MarkerOptions().position(sydney).title(name));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        }
+    };
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 //        mapViewModel =
 //                ViewModelProviders.of(this).get(MapViewModel.class);
         View root = inflater.inflate(R.layout.fragment_map, container, false);
+
+
 //        final TextView textView = root.findViewById(R.id.text_slideshow);
 //        mapViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -45,22 +67,43 @@ public class MapFragment extends Fragment {
 //            }
 //        });
 
-        if (getArguments() != null) {
-            this.lat = getArguments().getDouble("lat");
-            this.lon = getArguments().getDouble("lon");
-            this.name = getArguments().getString("name");
-        }
+//        if (getArguments() != null) {
+//            this.lat = getArguments().getDouble("lat");
+//            this.lon = getArguments().getDouble("lon");
+//            this.name = getArguments().getString("name");
+//        }
 
-        Fragment fragment = new fragmentMap();
-        Bundle b =new Bundle();
-        b.putString("name", name);
-        b.putDouble("lat", lat);
-        b.putDouble("lon", lon);
-        fragment.setArguments(b);
-        FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment, fragment, null);
-        fragmentTransaction.commit();
+//        Fragment fragment = new fragmentMap();
+//        Bundle b =new Bundle();
+//        b.putString("name", name);
+//        b.putDouble("lat", lat);
+//        b.putDouble("lon", lon);
+//        fragment.setArguments(b);
+//        FragmentManager fragmentManager = MainActivity.this.getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.add(R.id.fragment, fragment, null);
+//        fragmentTransaction.commit();
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        SupportMapFragment mapFragment =
+                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        if (mapFragment != null) {
+            lat = 19.2389;
+            lon = -103.7653;
+            name = "Torreon";
+            if (getArguments() != null) {
+                this.lat = getArguments().getDouble("lat");
+//            Log.d("TAG2", String.valueOf(lat));
+                this.lon = getArguments().getDouble("lon");
+//            Log.d("TAG2", String.valueOf(lon));
+                this.name = getArguments().getString("name");
+//            Log.d("TAG2", String.valueOf(name));
+            }
+            mapFragment.getMapAsync(callback);
+        }
     }
 }
