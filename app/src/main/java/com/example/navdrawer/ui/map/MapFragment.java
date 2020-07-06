@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.navdrawer.MainActivity;
 import com.example.navdrawer.R;
-import com.example.navdrawer.fragmentMap;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -97,11 +97,11 @@ public class MapFragment extends Fragment {
             name = "Torreon";
             if (getArguments() != null) {
                 this.lat = getArguments().getDouble("lat");
-           Log.d("TAG2", String.valueOf(lat));
+           Log.d("TAGADENTRODELFRAGMENT", String.valueOf(lat));
                 this.lon = getArguments().getDouble("lon");
-            Log.d("TAG2", String.valueOf(lon));
+            Log.d("TAGADENTRODELFRAGMENT2", String.valueOf(lon));
                 this.name = getArguments().getString("name");
-            Log.d("TAG2", String.valueOf(name));
+            Log.d("TAGADENTRODELFRAGMENT3", String.valueOf(name));
             }
             mapFragment.getMapAsync(callback);
         }

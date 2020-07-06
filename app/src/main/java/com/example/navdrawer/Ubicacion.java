@@ -14,7 +14,7 @@ public class Ubicacion implements Serializable {
     }
 
 
-    public float getLon() {
+    public double getLon() {
         return longitud;
     }
 
@@ -22,7 +22,7 @@ public class Ubicacion implements Serializable {
 //        this.longitud = longitud;
 //    }
 
-    public float getLat() {
+    public double getLat() {
         return latitud;
     }
 
