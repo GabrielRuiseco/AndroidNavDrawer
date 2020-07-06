@@ -46,9 +46,13 @@ public class MapFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(lat, lon);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title(name));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            LatLng latLng = new LatLng(lat, lon);
+            float zoom = 17;
+            googleMap.addMarker(new MarkerOptions().position(latLng).title(name));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,zoom));
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
+            UiSettings settings = googleMap.getUiSettings();
+            settings.setZoomControlsEnabled(true);
         }
     };
 
